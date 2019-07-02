@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class GraphQLDataFetchers {
@@ -41,12 +42,15 @@ public class GraphQLDataFetchers {
     public DataFetcher getBookByIdDataFetcher() {
         return dataFetchingEnvironment -> {
             String bookId = dataFetchingEnvironment.getArgument("id");
-            return books
+
+            if(bookId != null) {
+                return books
                         .stream()
                         .filter(book -> book.get("id").equals(bookId))
-                        .findFirst()
-                        .orElse(null);
-
+                        .collect(Collectors.toList());
+            } else {
+                return books;
+            }
         };
     }
 
