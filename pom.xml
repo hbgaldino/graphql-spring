@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<graphql.version>11.0</graphql.version>
+		<graphql.version>17.4</graphql.version>
 	</properties>
 
 	<dependencies>
